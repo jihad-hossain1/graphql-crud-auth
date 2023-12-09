@@ -1,5 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import express from "express";
+import cors from "cors";
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import allTypeDefs from "./schemas/index.schema.js";
@@ -7,12 +9,13 @@ import allResolvers from "./resolvers/index.resolver.js";
 import context from "./context/context.js";
 
 dotenv.config();
+const app = express();
+app.use(cors());
 
-// “merging” types and resolvers
 const server = new ApolloServer({
   typeDefs: allTypeDefs,
   resolvers: allResolvers,
-  includeStacktraceInErrorResponses: false, //to exclude stackTrace parameter from error messages
+  includeStacktraceInErrorResponses: false,
   introspection: true,
 });
 
