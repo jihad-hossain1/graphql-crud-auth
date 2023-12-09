@@ -25,7 +25,7 @@ mongoose
     console.log("Connected to MongoDB..");
     return startStandaloneServer(server, {
       listen: { port: process.env.PORT },
-      context: context,
+      // context: context,
     });
   })
   .then((server) => {
